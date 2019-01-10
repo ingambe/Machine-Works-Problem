@@ -12,7 +12,7 @@ public class Main {
             File file = new File(fileName);
             List<Problem> problems = Parser.parseFile(file);
             for(int i = 0; i < problems.size(); i++){
-                System.out.println("Case " + (i + 1) + ": " + Solver.solve(problems.get(i)));
+                System.out.println("Case " + (i + 1) + ": " + Solver.complexSolver(problems.get(i)));
             }
         }
     }

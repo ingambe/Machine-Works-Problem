@@ -8,7 +8,7 @@ public class Machine {
     // CALCULATED
     private int machineCost;
     private int daysLefts;
-    private int minDaysProfitable;
+    private double minDaysProfitable;
     // how much we could expect if we keep the machine until the ends (then sold her)
     private int maximumMachineProfit;
 
@@ -19,7 +19,7 @@ public class Machine {
         this.dailyProfit = dailyProfit;
         this.machineCost = priceBought - priceResold;
         this.daysLefts = totalDaysProblem - daySale;
-        this.minDaysProfitable = (int) Math.ceil((this.machineCost * 1.0) / this.dailyProfit);
+        this.minDaysProfitable = Math.ceil((this.machineCost * 1.0) / this.dailyProfit);
         this.maximumMachineProfit = (this.dailyProfit * this.daysLefts) + this.priceResold;
     }
 
@@ -63,7 +63,7 @@ public class Machine {
         return daysLefts;
     }
 
-    public int getMinDaysProfitable() {
+    public double getMinDaysProfitable() {
         return minDaysProfitable;
     }
 
@@ -81,6 +81,10 @@ public class Machine {
 
     public boolean couldBuyThisMachine(int amountOfMoney){
         return amountOfMoney >= this.priceBought;
+    }
+
+    public boolean machineIsProfitable(){
+        return minDaysProfitable <= 0;
     }
 
 }
