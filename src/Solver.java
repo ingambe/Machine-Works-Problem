@@ -30,6 +30,7 @@ public class Solver {
                     }
                 } else {
                     // the state where we keep the machine and get money from her
+                    // we update the machine when we copy her
                     State keepMachine = new State(current, current.dollar + current.machine.getDailyProfit(), current.dayToday + 1, new Machine(current.machine, 1));
                     stateQueue.add(keepMachine);
 

@@ -37,6 +37,7 @@ public class Parser {
                     int priceResold = Integer.parseInt(splittedLine[2]);
                     int dailyProfit = Integer.parseInt(splittedLine[3]);
                     Machine machine = new Machine(daySale, priceBought, priceResold, dailyProfit, days);
+                    // we don't add machine that can't be profitable during the period of restructuring
                     if (machine.couldBeProfitable()) {
                         machines.add(machine);
                     }
