@@ -1,16 +1,17 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class Problem {
 
     private int totalNumberMachines;
     private int money;
-    private int daysLeft;
+    private int numberDays;
     private List<Machine> machines;
 
-    public Problem(int totalNumberMachines, int money, int daysLeft, List<Machine> machines) {
+    public Problem(int totalNumberMachines, int money, int numberDays, List<Machine> machines) {
         this.totalNumberMachines = totalNumberMachines;
         this.money = money;
-        this.daysLeft = daysLeft;
+        this.numberDays = numberDays;
         this.machines = machines;
     }
 
@@ -26,12 +27,12 @@ public class Problem {
         this.money = money;
     }
 
-    public int getDaysLeft() {
-        return daysLeft;
+    public int getNumberDays() {
+        return numberDays;
     }
 
-    public void setDaysLeft(int daysLeft) {
-        this.daysLeft = daysLeft;
+    public void setNumberDays(int numberDays) {
+        this.numberDays = numberDays;
     }
 
     public List<Machine> getMachines() {
@@ -40,6 +41,16 @@ public class Problem {
 
     public void setMachines(List<Machine> machines) {
         this.machines = machines;
+    }
+
+    public List<Machine> machinesOfDay(int day, int amountOfMoney){
+        List<Machine> machinesDay = new ArrayList<>();
+        for(Machine machine : this.machines){
+            if(machine.couldBuyThisMachine(amountOfMoney) && machine.getDaySale() == day){
+                machinesDay.add(machine);
+            }
+        }
+        return machinesDay;
     }
 
 }

@@ -10,7 +10,9 @@ public class Main {
             String fileName = args[0];
             File file = new File(fileName);
             Problem problem = Parser.parseFile(file);
-            int t = 3;
+            // BFS to explore the problem
+
+            System.out.println(Solver.solve(problem));
         }
     }
 

@@ -14,6 +14,7 @@ public class Parser {
      * @return the Problem object representing the problem
      */
     public static Problem parseFile(final File file){
+        // TODO : more than one problem
         Problem problem = null;
         try {
             Scanner scanner = new Scanner(file);
@@ -32,8 +33,10 @@ public class Parser {
                 int priceBought = Integer.parseInt(splittedLine[1]);
                 int priceResold = Integer.parseInt(splittedLine[2]);
                 int dailyProfit = Integer.parseInt(splittedLine[3]);
-                Machine machine = new Machine(daySale, priceBought, priceResold, dailyProfit);
-                machines.add(machine);
+                Machine machine = new Machine(daySale, priceBought, priceResold, dailyProfit, days);
+                if(machine.couldBeProfitable()) {
+                    machines.add(machine);
+                }
                 i--;
             }
             scanner.close();
