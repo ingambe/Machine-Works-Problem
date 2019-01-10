@@ -24,11 +24,9 @@ public class Solver {
                     State empty = new State(current.dollar, current.dayToday + 1);
                     stateQueue.add(empty);
                     for (Machine machine : problem.machinesOfDay(current.dayToday, current.dollar)) {
-                        int leftAfterBuy = current.dollar - machine.getPriceBought();
-                        if(leftAfterBuy >= 0) {
-                            State buy = new State(current, leftAfterBuy, current.dayToday + 1, machine);
-                            stateQueue.add(buy);
-                        }
+                        // we currently don't have a machine so we only buy one
+                        State buy = new State(current, current.dollar - machine.getPriceBought(), current.dayToday + 1, machine);
+                        stateQueue.add(buy);
                     }
                 } else {
                     // the state where we keep the machine and get money from her
@@ -37,16 +35,14 @@ public class Solver {
 
                     // we don't change our machine if she hasn't done a profit yet because otherwise it would have been better not buying her
                     if(current.machine.machineIsProfitable()) {
-                        // we look at the catalogue of available machines
-                        for (Machine machine : problem.machinesOfDay(current.dayToday, current.dollar)) {
+                        // we look at the catalogue of available machines and check only the one we could buy
+                        int moneyAfterMachineSold = current.dollar + current.machine.getPriceResold();
+                        for (Machine machine : problem.machinesOfDay(current.dayToday, moneyAfterMachineSold)) {
                             // we don't change our machine for a less profitable one
                             if (current.machine.getDailyProfit() < machine.getDailyProfit()) {
-                                // we sell our current machine and buy another one if we have enough money
-                                int leftAfterBuy = current.dollar + current.machine.getPriceResold() - machine.getPriceBought();
-                                if(leftAfterBuy >= 0) {
-                                    State buy = new State(current, leftAfterBuy, current.dayToday + 1, machine);
-                                    stateQueue.add(buy);
-                                }
+                                // we sell our current machine and buy another one
+                                State buy = new State(current, current.dollar + current.machine.getPriceResold() - machine.getPriceBought(), current.dayToday + 1, machine);
+                                stateQueue.add(buy);
                             }
                         }
                     }

@@ -43,6 +43,12 @@ public class Problem {
         this.machines = machines;
     }
 
+    /**
+     * Return the catalog of all machine we can buy with our money today
+     * @param day today's date
+     * @param amountOfMoney our amount of money
+     * @return the catalog
+     */
     public List<Machine> machinesOfDay(int day, int amountOfMoney){
         List<Machine> machinesDay = new ArrayList<>();
         for(Machine machine : this.machines){
