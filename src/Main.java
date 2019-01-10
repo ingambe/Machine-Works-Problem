@@ -11,9 +11,20 @@ public class Main {
             String fileName = args[0];
             File file = new File(fileName);
             List<Problem> problems = Parser.parseFile(file);
+            long start = System.nanoTime();
             for(int i = 0; i < problems.size(); i++){
-                System.out.println("Case " + (i + 1) + ": " + Solver.complexSolver(problems.get(i)));
+                Solver.complexSolver(problems.get(i));
+                //System.out.println("Case " + (i + 1) + ": " + Solver.complexSolver(problems.get(i)));
             }
+            long stop = System.nanoTime();
+            System.out.println("complexe : " + (stop - start));
+            start = System.nanoTime();
+            for(int i = 0; i < problems.size(); i++){
+                Solver.solve(problems.get(i));
+                //System.out.println("Case " + (i + 1) + ": " + Solver.complexSolver(problems.get(i)));
+            }
+            stop = System.nanoTime();
+            System.out.println("simple : " + (stop - start));
         }
     }
 
