@@ -32,12 +32,13 @@ public class Solver {
                     stateQueue.add(keepMachine);
                     for (Machine machine : problem.machinesOfDay(current.dayToday, current.dollar)) {
                         // TODO : dailyProfit on the day of the sale ???
-                        State buy = new State(current, current.dollar + current.machine.getPriceResold() - machine.getPriceBought() + machine.getDailyProfit(), current.dayToday + 1, machine);
+                        State buy = new State(current, current.dollar + current.machine.getPriceResold() - machine.getPriceBought(), current.dayToday + 1, machine);
                         stateQueue.add(buy);
                     }
                 }
             } else {
                 if (current.machine != null) {
+                    current.dollar += current.machine.getDailyProfit();
                     current.dollar += current.machine.getPriceResold();
                 }
                 current.machine = null;
