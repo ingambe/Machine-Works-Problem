@@ -84,9 +84,15 @@ java Main instance.txt
 ### Solution for the small example instance
 
 The solution for the instance of the problem is the following:
+
 Case 1: 44
+
 Case 2: 11
+
 Case 3: 12
+
 Case 4: 10
+
 Case 5: 39
+
 Case 6: 39
